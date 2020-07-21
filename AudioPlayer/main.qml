@@ -27,7 +27,6 @@ ApplicationWindow {
         id: media_player
         property bool changeSlotBlocked: false
         autoPlay: true
-        //source: "qrc:/Daughter - Improve.mp3"
         onPositionChanged: {
             console.log(position, media_player.duration-1000)
             if (!changeSlotBlocked && position !== 0 && position > media_player.duration-500 && !position_slider.pressed)
@@ -75,11 +74,9 @@ ApplicationWindow {
 
             onAccepted: {
                 var album_name = getText(0, length)
-                //select(0, length)
-                console.log(album_name + ".alb")    //.txt
+                console.log(album_name + ".alb")
                 remove(0, length)
                 dockWindow.visible = false
-                //нужно сложить строки
                 var musics = ""
                 var curIndex = playlistView.currentIndex
                 playlistView.currentIndex = 0
@@ -154,7 +151,7 @@ ApplicationWindow {
             MenuItem {
                 text: qsTr("&Album")
                 shortcut: "Ctrl+A"
-                checkable: true     //даю возможность сделать флаг
+                checkable: true
                 onTriggered: {
                     if (checked) {
                         playlistArea.visible = true
@@ -198,15 +195,12 @@ ApplicationWindow {
 
         ColumnLayout {
             height: parent.height
-            //anchors.margins: 9
             width: 200
             Rectangle {
                 id: fileModel
                 visible: false
                 width: 200
-                //height: column.height
                 height: 340
-                //title: qsTr("File System")
 
                 ItemSelectionModel {
                     id: sel
@@ -274,10 +268,8 @@ ApplicationWindow {
             width: 350
             height: parent.height
             spacing: 2
-            //Layout.maximumWidth: 350
 
             Item {
-                //anchors.centerIn: parent
                 Layout.alignment: Qt.AlignCenter
                 width: 200
                 height: 200
@@ -287,8 +279,6 @@ ApplicationWindow {
                     smooth: true
                     anchors.fill: parent
                     source: playlistView.currentIndex != -1 ? "qrc:/images/def.jpg" : {}
-                    //source: "qrc:/images/def.jpg" //media_player.metaData.coverArtUrlLarge
-                    //source: media_player.metaData.posterUrl
                     onSourceChanged: {
                         /*if (!media_player.metaData.posterUrl) {
                             source: "qrc:/images/def.jpg"
@@ -310,8 +300,6 @@ ApplicationWindow {
                     anchors.fill: textrect
                     width: parent.width
                     horizontalAlignment: Text.AlignHCenter
-                    // maximumLineCount: 10
-                    //text: "Song's name"
                     text: media_player.metaData.title
                     color: "white"
                     font.pointSize: text.length > 20 ? 350/(text.length+4) : 16
@@ -560,20 +548,6 @@ ApplicationWindow {
                                 else
                                     playlistView.currentIndex++
                                 media_player.source = playlistModel.get(playlistView.currentIndex)["path"]
-                                /*if (media_player.position < media_player.duration-1000)
-                                {
-                                    media_player.changeSlotBlocked = true
-                                    media_player.pause()
-                                    media_player.seek(media_player.duration-1)
-                                    sleep(200)
-                                    media_player.changeSlotBlocked = false
-                                }
-                                else
-                                {*/
-                                //playlistView.currentIndex++
-                                //media_player.source = playlistModel.get(playlistView.currentIndex)["path"]
-                                //media_player.play()
-                                //}
                             }
                         }
                     }
@@ -601,7 +575,7 @@ ApplicationWindow {
                 Text {
                     id: playlistTitle
                     horizontalAlignment: Text.AlignHCenter
-                    property var playlist_path: "Playlist"  //file:///C:/Users/MiAir/Music/Playlist.txt
+                    property var playlist_path: "Playlist"
                     width: parent.width
                     text: "Playlist"
                     font.pixelSize: 24
@@ -811,18 +785,17 @@ ApplicationWindow {
         var urlsArr = text.split('\n')
         if (urlsArr.length === 1)
         {
-            !hasDublicates(urlsArr[0]) ? playlistModel.append( { "path" : urlsArr[0], } ) : {} //заменить на playlistModel.append( { "path" : urlsArr[0], } )
+            !hasDublicates(urlsArr[0]) ? playlistModel.append( { "path" : urlsArr[0], } ) : {}
             console.log(urlsArr[0])
         }
         else
         {
             for (var i=0; i<urlsArr.length-1; i++)
             {
-                !hasDublicates(urlsArr[i]) ? playlistModel.append( { "path" : urlsArr[i], } ) : {}  //заменить на playlistModel.append( { "path" : urlsArr[i], } )
+                !hasDublicates(urlsArr[i]) ? playlistModel.append( { "path" : urlsArr[i], } ) : {}
                 console.log(urlsArr[i])
             }
         }
         playlistView.currentIndex = curIndex
     }
 }
-
