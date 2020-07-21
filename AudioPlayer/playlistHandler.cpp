@@ -27,7 +27,6 @@ void playlistHandler::openPlaylist(const QUrl &url)
     }
 }
 
-//void playlistHandler::savePlaylist(QUrl &url)
 void playlistHandler::savePlaylist(QString& album_name, QString& recources)
 {
     QString path;
@@ -36,7 +35,7 @@ void playlistHandler::savePlaylist(QString& album_name, QString& recources)
     }
     else {
         path = album_name + ".alb";
-    }           //было txt
+    }
 
     QFile file(path);
     if (file.open(QIODevice::WriteOnly)) {
@@ -55,27 +54,3 @@ void playlistHandler::deletePlaylist(QString& album_name)
         file.remove();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
