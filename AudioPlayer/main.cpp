@@ -38,14 +38,3 @@ int main(int argc, char *argv[])
 
     return app.exec();
 }
-
-
-/*
-    const QStringList & musicPaths = QStandardPaths::standardLocations(QStandardPaths::MusicLocation);
-    const QUrl musicUrl = QUrl::fromLocalFile(musicPaths.isEmpty() ? QDir::homePath() : musicPaths.first());
-    rootContext->setContextProperty(QStringLiteral("musicUrl"), musicUrl);
-
-    const QStringList arguments = QCoreApplication::arguments();
-    const QUrl commandLineUrl = arguments.size() > 1 ? QUrl::fromLocalFile(arguments.at(1)) : QUrl();
-    rootContext->setContextProperty(QStringLiteral("url"), commandLineUrl);
-*/
