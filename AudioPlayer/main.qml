@@ -8,7 +8,6 @@ import QtQml.Models 2.12
 import QtWinExtras 1.0 as Win
 import Qt.labs.folderlistmodel 2.1
 
-//import io.qt.examples.quick.controls.filesystembrowser 1.0
 import my.mo.filesystembrowser 1.0
 import my.mo.playlisthandler 1.0
 
@@ -165,7 +164,6 @@ ApplicationWindow {
                         window.width = window.width - playlistArea.width
                     }
                 }
-                //должен делать видным список песен
             }
 
             MenuItem {
@@ -479,8 +477,6 @@ ApplicationWindow {
                                         playlistView.currentIndex--
                                     media_player.source = playlistModel.get(playlistView.currentIndex)["path"]
                                 }
-
-                                //если == 0, то на предыдущую песню
                             }
 
                             onPressed: prev_button.state = "pressed"
@@ -524,12 +520,7 @@ ApplicationWindow {
                         Layout.preferredWidth: 30
 
                         state: "none"
-                        /*MouseArea {
-                            anchors.fill: parent
-                            onClicked: playLogic.previous()
-                            onPressed: next_button.state = "pressed"
-                            onReleased: next_button.state = "none"
-                        }*/
+                        
                         states: State {
                             name: "pressed"
                             when: MouseArea.pressed
